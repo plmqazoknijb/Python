@@ -17,8 +17,10 @@ class Drink:
         if cup =='':
             self.cup = 0
         else:
-            cup=int(cup) -1
-            self.cup = cup #self.cup에 넣자
+            cup = int(cup) -1
+            self.cup = cup    #self.cup에 넣자
+        if self.cup == 1:     #점보일때 500원 추가
+            self.price += 500
 
     def set_ice(self):
         for index, ice in enumerate(Drink._ICES): # 얼음량 종류 보여주기
@@ -49,15 +51,16 @@ class Drink:
     def __str__(self): #문자열 리턴
         return f'이름: {self.name}\t가격: {self.price}원\t컵사이즈: {Drink._CUPS[self.cup]}\t얼음량: {Drink._ICES[self.ice]}\t당도: {Drink._SUGARS[self.sugar]}'
 
-민혁이꺼 = Drink('초코버블티','3300')
+민혁이꺼 = Drink('초코버블티',3300)
 민혁이꺼.order()
 print(민혁이꺼)
 
-class Coffee:
-    def __init__(self):
-        pass
-    def __str__(self):
-        pass
+class Coffee(Drink):
+   pass
+
+# 민혁이꺼 = Coffee('아메리카노','3300')
+# 민혁이꺼.order()
+# print(민혁이꺼)
 
 class Bubbletea:
     def __init__(self):
