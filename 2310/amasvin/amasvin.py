@@ -1,3 +1,5 @@
+from copy import copy
+
 class Drink:
     _CUPS = ('레귤러', '점보')
     _ICES = ('0%', '50%', '100%', '150%')
@@ -51,9 +53,9 @@ class Drink:
     def __str__(self): #문자열 리턴
         return f'이름: {self.name}\t가격: {self.price}원\t컵사이즈: {Drink._CUPS[self.cup]}\t얼음량: {Drink._ICES[self.ice]}\t당도: {Drink._SUGARS[self.sugar]}'
 
-민혁이꺼 = Drink('초코버블티',3300)
-민혁이꺼.order()
-print(민혁이꺼)
+# 민혁이꺼 = Drink('초코버블티',3300)
+# 민혁이꺼.order()
+# print(민혁이꺼)
 
 class Coffee(Drink):
    pass
@@ -62,14 +64,71 @@ class Coffee(Drink):
 # 민혁이꺼.order()
 # print(민혁이꺼)
 
-class Bubbletea:
-    def __init__(self):
-        pass
+class Bubbletea(Drink):
+    _PEALRS = ('타피오카','코코','젤리','알로에')
+
+    def __init__(self,name,pearl):
+        super().__init__(name,pearl)
+        self.pearl = 0;
+
+    def set_pearl(self):    #펄종류 보여줌, 펄 선탣
+        for index, pearl in enumerate(Bubbletea._PEALRS):
+            print(f'{index +1}: {pearl}')
+        pearl = input('펄 종류를 선택하세요: ')
+        self.ice = 0 if pearl == '' else int(pearl) - 1
+
+
     def __str__(self):
-        pass
+        return super().__str__() + f'\t펄:{Bubbletea._PEALRS[self.pearl]}'
+
+    def order(self):
+        super().order()
+        self.set_pearl()
 
 class Order:
     def __init__(self):
-        pass
-    def __str__(self):
-        pass
+        self.menu =[]
+        self.init_menu()
+        self.order_menu = []
+
+    def init_menu(self):
+        drink1 = Coffee('아메리카노',1800)
+        drink2 = Bubbletea('하동녹차오레오',3300)
+        drink3 = Bubbletea('딸기요거트',3400)
+        self.menu.append(drink1)
+        self.menu.append(drink2)
+        self.menu.append(drink3)
+
+    def show_menu(self):
+        for index, drink in enumerate(self.menu):
+            print(f'{index +1}: {drink.name}\t가격:{drink.price}원')
+
+    def order_drink(self):
+        while True:
+            self.show_menu()  #메뉴 보여주자#반복 시작
+            drink = input('메뉴를 선택하세요 : ')       #메뉴 선택하자
+            drink = int(drink) -1
+            new_drink = copy(self.menu[drink])
+            new_drink.order()           #옵션 선택하자
+            self.order_menu.append(new_drink)       #self.order_menu 추가하자
+            is_add = input('더 주문하실까요?(n:끝): ')      #더 주문할건지 질문
+            if is_add =='n':        #반복 끝
+                break
+        print(self) #총 가격 계산 후, 주문 내역 보여주기  자기의 __str__() 호출
+
+    def sum_price(self):
+        total_price = 0;
+        for drink in self.order_menu:       #self.order_menu에서 하나씩 꺼내자
+            total_price += drink.price      #음료수.price의 합계를 구하자
+        return  total_price
+
+    def __str__(self):  #주문내역
+        s='-' *20 + '주문내역' + '-'*20 + '\n'  #주문내역입니다. 제목 보여주자
+        for drink in self.order_menu:
+            s+= f'{drink}\n'    #self.order_menu 에 있는 음료수 목록 보여주자
+        s += f'주문한 음료수 개수: {len(self.order_menu)}개\n'
+        s += f'총 가격: {self.sum_price()}원'   #총가격 보여주자
+        return s
+
+order = Order()
+order.order_drink()
