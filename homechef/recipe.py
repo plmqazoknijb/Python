@@ -38,11 +38,11 @@ class Recipe:
             self.whatin[name] = gram +'g'
 
     def set_recipe(self):
-        self.set_link()
-        self.set_quantity()
         self.set_whatin()
+        self.set_quantity()
         self.set_time()
         self.set_info()
+        self.set_link()
 
     def __str__(self):
         return f'레시피: {self.name}\n양: {self.quantity}인분\n재료: {self.whatin}\n설명: {self.info}\n시간: {self.time}\n영상: {self.link} '

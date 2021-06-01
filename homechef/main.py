@@ -21,7 +21,7 @@ def main():
             recipebook_203.add_recipe()
         #재료검색
         elif menu == '3':
-            return
+            recipebook_203.search_watin()
         #레시피모음
         elif menu =='4':
             recipebook_203.show_all_recipe()
