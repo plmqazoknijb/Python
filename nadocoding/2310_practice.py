@@ -1013,6 +1013,10 @@ print("총 {0}대의 매물이 있습니다.".format(len(houses)))
 for house in houses:
     house.show_detail()
 
+#=====================================================================
+#=======================<<<<< 2학기 >>>>>==============================
+#=====================================================================
+
 #모듈
 # import theater_module
 # theater_module.price(3) #3명이서 영화 보러 갔을 때 가격
@@ -1036,3 +1040,22 @@ for house in houses:
 
 from theater_module import price_soldier as price_s
 price_s(5)
+
+#패키지
+# import travel.thailand
+# trip_to = travel.thailand.ThailandPackage()
+# trip_to.detail()
+
+# from travel.thailand import ThailandPackage
+# trip_to = ThailandPackage()
+# trip_to.detail()
+
+# from travel import vietnam
+# trip_to = vietnam.VietnamPackage()
+# trip_to.detail()
+
+#__all__
+from travel import *
+# trip_to = vietnam.VietnamPackage()
+trip_to = thailand.ThailandPackage()
+trip_to.detail()
