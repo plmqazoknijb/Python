@@ -1012,3 +1012,4 @@ houses.append(house3)
 print("총 {0}대의 매물이 있습니다.".format(len(houses)))
 for house in houses:
     house.show_detail()
+
