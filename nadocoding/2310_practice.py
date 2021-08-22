@@ -1059,3 +1059,5 @@ from travel import *
 # trip_to = vietnam.VietnamPackage()
 trip_to = thailand.ThailandPackage()
 trip_to.detail()
+
+#모듈 직접 실행
