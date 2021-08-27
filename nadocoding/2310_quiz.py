@@ -253,11 +253,10 @@ result = get_compliment("좋은 마음가짐이다!")
 print(result)
 
 #퀴즈 5-1 ~ 5-5.
-    #1.모듈이란 - 비슷한 성실끼리의 함수나 변수 또는 클래스를 모아 놓은 파일이다.
+    #1.모듈이란 - 비슷한 성질끼리의 함수나 변수 또는 클래스를 모아 놓은 파일이다.
     #2.패키지란 - 모듈들을 모아둔 집합
     #3.theater_module의 price 함수를 p학번 라는 이름으로 호출 하도록 import문을 작성
-from theater_module import price as p2310
-#p2310(2)
+    #from theater_module import price as p2310
     #4.__all__의 역할 - 실제 패키지를 만든 사람은 공개범위를 설정해 줄 수 있다.
     # 이때 __all__이라는 변수에 리스트 형태로 공개하려는 모듈 이름을 추가하면 해당모듈에 대해 공개 설정을 할 수 있게 된다.
     #5. if __name__ == "__main__":
