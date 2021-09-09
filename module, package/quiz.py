@@ -74,5 +74,10 @@ while True:
     list_class.remove(int(exclude_number))
     print(list_class)
 #랜덤으로 섞자
+random.shuffle(list_class)
 #출력하자
+#print(list_class)
+print('자리\t학생번호')
+for index, n in enumerate(list_class):
+    print(f'{index+1}\t{n}')
 
