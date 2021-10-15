@@ -25,11 +25,16 @@ def load_history():
     count_list = list(count_list)
     count_list.sort()
     return count_list[:3]
+
 while True:
 # 숫자 3자리 중북없이 묻자
     player = input("숫자 세자리는?(t: top3) ")
     if player == 't':
-        history = load_history()
+        try:
+            history = load_history()
+        except FileNotFoundError:
+            print('history 파일이 없어요. ㅠㅠ')
+            continue
         print(history)
         continue
     try:    #숫자가 아닐 때 에러 처리
