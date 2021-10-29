@@ -13,14 +13,26 @@ class TictactoeGameEngine:
     def set(self, row, col):
         self.board[self.SIZE * (row - 1) + (col - 1)] = self.turn
 
+    def position_to_index(self, row, col):
+        return self.SIZE * (row - 1) + (col - 1)
     def set_winner(self):
         # - 3줄
+        for row in range(1, 3+1):
+            if self.board[self.position_to_index(row,1)] == self.board[self.position_to_index(row,2)] == self.board[self.position_to_index(row,3)] == self.turn:
+                return self.turn
         # | 3줄
+        for col in range(1, 3+1):
+            if self.board[self.position_to_index(1,col)] == self.board[self.position_to_index(2,col)] == self.board[self.position_to_index(3,col)] == self.turn:
+                return self.turn
         # \
+        if self.board[self.position_to_index(1,1)] == self.board[self.position_to_index(2,2)] == self.board[self.position_to_index(3,3)] == self.turn:
+            return self.turn
         # /
-        return self.turn
+        if self.position_to_index(1,3)== self.position_to_index(2,2) == self.position_to_index(3,1) == self.turn: #'.'일 때, 끝 안나게 하자
+            return self.turn
         #비기는 조건: 다 채워졌을때 위의것에 해당안됐을때: self.board에 '.'이 없는 상태
-        return 'd'  #draw
+        if not '.' in self.board:  #self.board안에 '.'이 없으면#
+            return 'd' # #draw
 
     def change_turn(self):
         #self.turn 'X'면 'O', 'O'면 'X'로 바꾸자
@@ -37,6 +49,15 @@ if __name__ == '__main__':
     game_engine.show_board()        #['.', '.', '.', '.', '.', '.', '.', 'X', '.']
     game_engine.set(3, 1)
     game_engine.set(3, 3)
-    print(game_engine.set_winner()) #'X'
+    # print(game_engine.set_winner()) #'X'
     game_engine.change_turn()
     print(game_engine.turn)     #'O'
+    #무승푸 만들자, 확인하자
+    # game_engine.board = ['X','O','X',
+    #                      'O','O','X',
+    #                      'X','X','O']
+    # print(game_engine.set_winner())  #'d'
+    game_engine.set(1, 3)
+    game_engine.set(2, 2)
+    game_engine.set(3, 1)
+    print(game_engine.set_winner())  #'/'
