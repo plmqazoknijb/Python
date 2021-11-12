@@ -42,6 +42,7 @@ class TictactoeGUI:
             self.root.quit()
         elif winner == 'd':
             messagebox.showinfo('Gamee Over', '무승부 👍')
+            self.root.quit()
         # change turn
         self.game_engine.change_turn()
 
@@ -52,7 +53,7 @@ class TictactoeGUI:
 
         x = 0
         y = 0
-        for i , v in enumerate(self.game_engine):
+        for i , v in enumerate(self.game_engine.board):
             if v == '.':
                 pass
             else:          #elif v == 'X' of v == 'O'

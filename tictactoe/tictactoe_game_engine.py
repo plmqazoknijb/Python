@@ -1,3 +1,6 @@
+from tkinter import messagebox
+
+
 class TictactoeGameEngine:
     def __init__(self):
         self.SIZE = 3
@@ -11,7 +14,11 @@ class TictactoeGameEngine:
                 print()
 
     def set(self, row, col):
-        self.board[self.SIZE * (row - 1) + (col - 1)] = self.turn
+        if self.board[self.SIZE * (row - 1) + (col - 1)] == '.':
+            self.board[self.SIZE * (row - 1) + (col - 1)] = self.turn
+        else:
+            messagebox.showinfo('같은 자리 오류','다른 자리를 선택해주세요')
+            self.change_turn()
 
     def position_to_index(self, row, col):
         return self.SIZE * (row - 1) + (col - 1)
